@@ -25,7 +25,7 @@ function CreateTrThElement(name, value, colSpan, type) {
 
 
 function GenerateTable() {
-    let n = 9;
+    let n = 42;
     let colspan = 3;
 	let names1 = [];
     let names2 = [];
