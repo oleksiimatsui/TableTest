@@ -1,5 +1,6 @@
 
 
+
 function CreateLabel(name, innerHtml) {
 	let label = document.createElement('label');
 	label.setAttribute('name', name);
@@ -43,13 +44,14 @@ function GenerateTable() {
     }
 
     table = document.getElementById("table");
+    thead = document.createElement("thead");
     let tr1 = document.createElement('tr');
 
         for (let i=0; i<names1.length; i++) {
             tr1.appendChild(CreateTrThElement(i, names1[i], colspans[i], 'string'));
         }
 
-    table.appendChild(tr1);
+    thead.appendChild(tr1);
 
     let tr = document.createElement('tr');
     let index = 0;
@@ -60,21 +62,29 @@ function GenerateTable() {
         }
     }
 
-    table.appendChild(tr);
-
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    let tbody = document.createElement("tbody");
+    let o =0 ;
+    
     for(let i = 0; i<rowsCount; i++){
         let tr =  document.createElement('tr');
         for(let i = 0; i < n ; i++){
             for(let j = 0; j < colspans[i]; j++){
+                
                 let td = document.createElement('td');
                 td.setAttribute("name", i + "." + j + "_"); 
-                td.innerHTML = "cell with name " + i + "." + j + "_";
+                td.innerHTML = "cell " + o + "_";
                 tr.appendChild(td);
+                o++;
             }
         }
-        table.appendChild(tr);
+        tbody.appendChild(tr);
     }
+    table.appendChild(tbody);
 }
 window.onload = (event) => {
     GenerateTable();
+$('#table').DataTable({"ordering": false});
+    
 };

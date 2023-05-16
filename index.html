@@ -3,6 +3,10 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="dragtable.css"/>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+        
+  
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
     </head>
     <style>
         table, th, td {
@@ -20,6 +24,13 @@
             visibility: hidden;
             max-width: 10px;
         }
+        thead{
+            background-color: rgb(176, 210, 255);
+        }
+        tbody{
+
+            background-color: rgb(251, 255, 217);
+        }
     </style>
 <body>
 <table id="table">
@@ -28,7 +39,6 @@
 </body>
 <script src="./init.js"></script>
 <script src="./toggler.js"></script>
-<script src="./dragging.js"></script>
 
 
 </html>
