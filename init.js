@@ -1,5 +1,5 @@
 
-
+var table;
 
 function CreateLabel(name, innerHtml) {
 	let label = document.createElement('label');
@@ -74,7 +74,7 @@ function GenerateTable() {
                 
                 let td = document.createElement('td');
                 td.setAttribute("name", i + "." + j + "_"); 
-                td.innerHTML = "cell " + o + "_";
+                td.innerHTML = "celllllllllllllll " + o + "_";
                 tr.appendChild(td);
                 o++;
             }
@@ -85,6 +85,7 @@ function GenerateTable() {
 }
 window.onload = (event) => {
     GenerateTable();
-$('#table').DataTable({"ordering": false});
+table = $('#table');
+table.DataTable({"ordering": false});
     
 };
