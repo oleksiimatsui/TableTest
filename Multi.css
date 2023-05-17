@@ -1,0 +1,72 @@
+body > .container {
+    max-width: none;
+}
+
+.sticky-container {
+    width: 100%;
+    max-height: calc(100vh - 4rem);
+    overflow: scroll;
+    margin-top: 15px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+.sticky-table{
+    font-size: small;
+}
+
+.sticky-table tr{
+    overflow: hidden;
+    height: 14px;
+    white-space: nowrap;
+}
+
+.sticky-table,
+.sticky-table th{
+    border-collapse:separate;
+    border-spacing: 0;
+    border: 0.1px solid rgb(207, 207, 207);
+}
+.sticky-table td{
+    border-collapse:collapse;
+    border: 0.1px solid rgb(207, 207, 207);
+}
+.sticky-table td{
+    max-width: 100px;
+    overflow-x: auto;
+}
+
+    .sticky-table tr:nth-child(even) td {
+        background: #fafafa;
+    }
+
+    .sticky-table tr:nth-child(odd) td {
+        background: #fff;
+    }
+
+    .sticky-table thead,.sticky-table thead tr:nth-child(1){
+        position: sticky;
+        top: 0px;
+        background: #dfedc6;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+    }
+    .sticky-table thead tr:nth-child(2){
+        position: sticky;
+        top: 0px;
+        background: rgb(219, 223, 185);
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+    }
+
+    .sticky-table th,
+    .sticky-table td {
+        padding: 10px;
+       
+    }
+
+tr td:first-child {
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    left: 0px;
+    z-index: 9;
+}

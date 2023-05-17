@@ -19,17 +19,31 @@ function ToggleColumn(id, isClosed) {
 
 function ToggleCell(element, isClosed) {
     if( isClosed ){
-        element.classList.remove("hiddenCell1");
+        element.classList.remove("hiddenCell");
+        element.style.width = "fit-content";
     }else{
         element.classList.add("hiddenCell1");
+    }
+    var childs = element.children;
+    if(childs == null) return;
+    for (var i = 0; i < childs.length; i++) {
+      var child = childs[i];
+      child.style.display = isClosed ? "" : "none";
     }
 }
 
 function ToggleFirstCell(element, isClosed) {
     if( isClosed ){
         element.classList.remove("hiddenCell");
+        element.style.width = "fit-content";
     }else{
         element.classList.add("hiddenCell");
+    }
+    var childs = element.children;
+    if(childs == null) return;
+    for (var i = 0; i < childs.length; i++) {
+      var child = childs[i];
+      child.style.display = isClosed ? "" : "none";
     }
 }
 
@@ -42,6 +56,7 @@ function ToggleHeader(element, isClosed) {
         child.style.display = isClosed == true ? "" : "none";
       }else{
         child.innerHTML = isClosed ? "-" : "+";
+        child.setAttribute('title', isClosed ? "" : element.getAttribute("name"));
       }
     }
 }
@@ -56,8 +71,9 @@ function toggle(e) {
     let header = e.target.parentElement;
     let parentName = header.getAttribute("name");
     childCol = document.getElementsByName(parentName + "." + 0)[0];
+    ToggleHeader(header, isClosed);
     if(childCol == null){
-        ToggleHeader(header, isClosed);
+        
          let elements = document.getElementsByName(parentName +"_");
          for (let i = 0; i < elements.length; i++) {
              ToggleCell(elements[i], isClosed);
