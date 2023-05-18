@@ -13,19 +13,17 @@ function CreateTrThElement(name, value, colSpan, rowspan, type) {
 	let th = document.createElement('th');
     th.setAttribute('colspan', colSpan);
     th.setAttribute('rowspan', rowspan);
-    if(rowspan == 2) console.log(2);
     th.setAttribute('name', name);
 	let button = document.createElement("button");
     
-    button.className = 'btn btn-sm btn-light expand-text text-bold';
-    button.setAttribute('type', 'button');
+    button.className = 'toggleColButton';
     button.innerHTML = "-";
     button.setAttribute('onclick', 'toggle(event)');
-    button.style.display = "inline-block";
+   
 	th.appendChild(button);
-	th.appendChild(document.createElement('br'));
 	let label = CreateLabel(value, value);
 	th.appendChild(label);
+    console.log(th.children.length);
 	return th;
 }
 
@@ -44,8 +42,10 @@ function GenerateTable() {
    
     for(let i=0; i<n/2; i++){
         colspans.push(colspan);
+        
     }
     for(let i=n/2; i<n-1; i++){
+        
         colspans.push(1);
     }
 
@@ -64,7 +64,12 @@ function GenerateTable() {
             if(colspans[i] > 1){
                 tr1.appendChild(CreateTrThElement(i, names1[i], colspans[i], 1, 'string'));
             }else{
-                tr1.appendChild(CreateTrThElement(i, names1[i], colspans[i], 2, 'string'));
+                let td = CreateTrThElement(i, names1[i], colspans[i], 2, 'string')
+                let trigger = document.createElement('span')
+                trigger.className = 'resizeTrigger'
+                trigger.addEventListener('mousedown', beginResize)
+                td.appendChild(trigger)
+                tr1.appendChild(td);
             }
             
         }
@@ -76,9 +81,15 @@ function GenerateTable() {
     for (let i=0; i<names2.length; i++) {
         for(let j=0; j<colspans[i]; j++){
             if(colspans[i] > 1 ){
-                tr.appendChild(CreateTrThElement(i + "." + j, i + "." + j, 1, 1, 'string'));
+                let td = CreateTrThElement(i + "." + j, i + "." + j, 1, 1, 'string')
+                let trigger = document.createElement('span')
+                trigger.className = 'resizeTrigger'
+                trigger.addEventListener('mousedown', beginResize)
+                td.appendChild(trigger)
+                tr.appendChild(td);
             }
             index++;
+            
         }
     }
 
@@ -93,27 +104,33 @@ function GenerateTable() {
             if(colspans[i] == 1){
                 let td = document.createElement('td');
                 td.setAttribute("name", i + "_"); 
-                td.innerHTML = "<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. " + o + "_</div>";
-                
+                td.classList.add("editable");
+                let text =  document.createElement('div');
+                    text.classList.add("cellText")
+                    text.setAttribute("contenteditable","true");
+                    text.innerHTML = o;
+                    td.appendChild(text);
                 tr.appendChild(td);
                 o++;
             }else{
                 for(let j = 0; j < colspans[i]; j++){
                     let td = document.createElement('td');
                     td.setAttribute("name", i + "." + j + "_"); 
-                    td.innerHTML = "<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. " + o + "_</div>";
-              
+                    td.classList.add("editable");
+                    let text =  document.createElement('div');
+                    text.classList.add("cellText")
+                    text.setAttribute("contenteditable","true");
+                    text.innerHTML = o;
+                    td.appendChild(text);
                     tr.appendChild(td);
                     o++;
                 }
             }
-            
+            tbody.appendChild(tr);
         }
-        tbody.appendChild(tr);
     }
     table.appendChild(tbody);
 }
 window.onload = (event) => {
     GenerateTable();
-    
 };

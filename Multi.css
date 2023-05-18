@@ -2,37 +2,67 @@ body > .container {
     max-width: none;
 }
 
+.toggleColButton:not(.hiddenCell){
+    background: none;
+    vertical-align: baseline;
+    width: 20px;
+    line-height: 20px;
+    padding:0;
+    height: 20px;
+    border: 0.1px solid rgb(88, 88, 88);
+    color: rgb(85, 85, 85);
+    text-align: center;
+    border-radius: 50%;
+    user-select: none;
+    display:flex;
+    justify-items: center;
+    justify-content: center;
+}
+
 .sticky-container {
     width: 100%;
     max-height: calc(100vh - 4rem);
-    overflow: scroll;
-    margin-top: 15px;
     overflow-y: auto;
     overflow-x: auto;
+    margin-top: 15px;
+    
 }
 .sticky-table{
     font-size: small;
 }
 
+
 .sticky-table tr{
-    overflow: hidden;
     height: 14px;
     white-space: nowrap;
 }
 
+
 .sticky-table,
 .sticky-table th{
+
+    justify-content: center;
     border-collapse:separate;
     border-spacing: 0;
-    border: 0.1px solid rgb(207, 207, 207);
+    border: 0.1px solid rgb(179, 183, 150);
 }
 .sticky-table td{
     border-collapse:collapse;
     border: 0.1px solid rgb(207, 207, 207);
 }
-.sticky-table td{
-    max-width: 100px;
-    overflow-x: auto;
+
+.sticky-table th,
+.sticky-table td :not(.editable){
+    padding: 8px;
+}
+
+.editable{
+    padding: 0;
+    background-color: aquamarine;
+}
+.cellText{
+    overflow-x: hidden;
+    min-width: 100%;
 }
 
     .sticky-table tr:nth-child(even) td {
@@ -58,15 +88,29 @@ body > .container {
         z-index: 10;
     }
 
-    .sticky-table th,
-    .sticky-table td {
-        padding: 10px;
-       
-    }
-
 tr td:first-child {
     box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.15);
     position: sticky;
     left: 0px;
     z-index: 9;
 }
+
+th{
+    position: relative;
+}
+
+th > .resizeTrigger {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 16px;
+    right: -8px;
+    top: 0;
+    height: 100%;
+    background: inherit;
+    cursor: ew-resize;
+  }
+
+  th > .resizeTrigger:hover{
+    background-color: aquamarine;
+  }
