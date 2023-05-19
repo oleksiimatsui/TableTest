@@ -32,7 +32,6 @@ function ToggleCell(element, isClosed) {
 function ToggleFirstCell(element, isClosed) {
     var childs = element.children;
     if(childs == null) return;
-    console.log("childs " + childs.length);
     for (var i = 0; i < childs.length; i++) {
       var child = childs[i];
       if( isClosed ){
@@ -50,8 +49,18 @@ function ToggleHeader(element, isClosed) {
     for (var i = 0; i < childs.length; i++) {
       var child = childs[i];
       if(child.tagName != "BUTTON"){
-        child.style.display = isClosed == true ? "" : "none";
+        //child.style.display = isClosed == true ? "" : "none";
+        if(child.tagName == "LABEL"){
+            let tmp = child.innerHTML;
+            child.innerHTML = child.parentElement.getAttribute("value");
+            child.parentElement.setAttribute("value", tmp);
+        }
       }else{
+        if(child.classList.contains("checked")){
+            child.classList.remove("checked");
+        }else{
+            child.classList.add("checked");
+        }
         child.innerHTML = isClosed ? "-" : "+";
         child.setAttribute('title', isClosed ? "" : element.getAttribute("name"));
       }
@@ -63,7 +72,7 @@ function ToggleCellDisplay(element, isClosed) {
 }
 
 function toggle(e) {
-    let isClosed = e.target.innerHTML == "+" ? true : false;
+    let isClosed = e.target.classList.contains("checked") ? true : false;
     e.target.innerHTML = isClosed ? "-" : "+";
     let header = e.target.parentElement;
     let parentName = header.getAttribute("name");
