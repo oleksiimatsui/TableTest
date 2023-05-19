@@ -45,6 +45,7 @@ function ToggleFirstCell(element, isClosed) {
 
 function ToggleHeader(element, isClosed) {
     var childs = element.children;
+    element.style.width = "40px";
     if(childs == null) return;
     for (var i = 0; i < childs.length; i++) {
       var child = childs[i];
@@ -69,11 +70,11 @@ function toggle(e) {
     childCol = document.getElementsByName(parentName + "." + 0)[0];
     ToggleHeader(header, isClosed);
     if(childCol == null){
-        
-         let elements = document.getElementsByName(parentName +"_");
-         for (let i = 0; i < elements.length; i++) {
-             ToggleCell(elements[i], isClosed);
-         }
+        header
+        let elements = document.getElementsByName(parentName +"_");
+        for (let i = 0; i < elements.length; i++) {
+            ToggleCell(elements[i], isClosed);
+        }
     }else{
         let i = 0;
         ToggleFirstCol(parentName + "." + i, isClosed);

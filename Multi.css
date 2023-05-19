@@ -2,21 +2,19 @@ body > .container {
     max-width: none;
 }
 
-.toggleColButton:not(.hiddenCell){
+.toggleColButton{
     background: none;
-    vertical-align: baseline;
     width: 20px;
-    line-height: 20px;
-    padding:0;
+    padding: 0;
+    padding-bottom: 21px;
+    text-align: center;
     height: 20px;
     border: 0.1px solid rgb(88, 88, 88);
     color: rgb(85, 85, 85);
     text-align: center;
     border-radius: 50%;
     user-select: none;
-    display:flex;
-    justify-items: center;
-    justify-content: center;
+
 }
 
 .sticky-container {
