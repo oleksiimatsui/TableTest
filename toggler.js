@@ -36,9 +36,9 @@ function ToggleFirstCell(element, isClosed) {
     for (var i = 0; i < childs.length; i++) {
       var child = childs[i];
       if( isClosed ){
-            child.classList.remove("hiddenCell");
+            child.classList.remove("hiddenCell1");
         }else{
-            child.classList.add("hiddenCell");
+            child.classList.add("hiddenCell1");
         }
     }    
 }
