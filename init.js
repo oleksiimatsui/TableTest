@@ -2,28 +2,27 @@
 var table;
 
 function CreateLabel(name, innerHtml) {
-	let label = document.createElement('div');
+	let label = document.createElement('label');
 	label.setAttribute('name', name);
 	label.setAttribute('id', name);
 	label.innerHTML = innerHtml;
+    
 	return label;
 }
 
-function CreateTrThElement(name, value, colSpan, rowspan, type) {
+function CreateTrThElement(name, value, shortvalue, colSpan, rowspan, type) {
 	let th = document.createElement('th');
     th.setAttribute('colspan', colSpan);
     th.setAttribute('rowspan', rowspan);
     th.setAttribute('name', name);
+    th.setAttribute('value', shortvalue);
 	let button = document.createElement("button");
-    
     button.className = 'toggleColButton';
     button.innerHTML = "-";
     button.setAttribute('onclick', 'toggle(event)');
-   
 	th.appendChild(button);
 	let label = CreateLabel(value, value);
 	th.appendChild(label);
-    console.log(th.children.length);
 	return th;
 }
 
@@ -33,25 +32,27 @@ function GenerateTable() {
     let colspan = 3;
 	let names1 = [];
     let names2 = [];
+    let names1short = [];
+    let names2short = [];
     let colspans = [];
     
     let rowsCount = 20;
     for(let i=0; i<n; i++){
         names1.push("Big column " + i);
+        names1short.push("B-" + i)
     }
    
     for(let i=0; i<n/2; i++){
-        colspans.push(colspan);
-        
+        colspans.push(1);        
     }
     for(let i=n/2; i<n-1; i++){
-        
-        colspans.push(1);
+        colspans.push(colspan);
     }
 
     for(let i=0; i < n; i++){
         for(let j=0; j<colspans[i]; j++){
             names2.push("Small column " + i + "." + j);
+            names2short.push("S-" + i)
         }
     }
 
@@ -62,9 +63,9 @@ function GenerateTable() {
 
         for (let i=0; i<names1.length; i++) {
             if(colspans[i] > 1){
-                tr1.appendChild(CreateTrThElement(i, names1[i], colspans[i], 1, 'string'));
+                tr1.appendChild(CreateTrThElement(i, names1[i], names1short[i], colspans[i], 1, 'string'));
             }else{
-                let td = CreateTrThElement(i, names1[i], colspans[i], 2, 'string')
+                let td = CreateTrThElement(i, names1[i], names1short[i], colspans[i], 2, 'string')
                 let trigger = document.createElement('span')
                 trigger.className = 'resizeTrigger'
                 trigger.addEventListener('mousedown', beginResize)
@@ -81,7 +82,7 @@ function GenerateTable() {
     for (let i=0; i<names2.length; i++) {
         for(let j=0; j<colspans[i]; j++){
             if(colspans[i] > 1 ){
-                let td = CreateTrThElement(i + "." + j, i + "." + j, 1, 1, 'string')
+                let td = CreateTrThElement(i + "." + j, names2[index], names2short[i], 1, 1, 'string')
                 let trigger = document.createElement('span')
                 trigger.className = 'resizeTrigger'
                 trigger.addEventListener('mousedown', beginResize)

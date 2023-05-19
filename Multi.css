@@ -2,19 +2,24 @@ body > .container {
     max-width: none;
 }
 
+
 .toggleColButton{
     background: none;
-    width: 20px;
+    width: 20px !important;
     padding: 0;
     padding-bottom: 21px;
+    margin-right: 8px;
     text-align: center;
     height: 20px;
     border: 0.1px solid rgb(88, 88, 88);
     color: rgb(85, 85, 85);
     text-align: center;
-    border-radius: 50%;
+    border-radius: 5%;
     user-select: none;
-
+    display: inline-block;
+}
+.toggleColButton.checked{
+    background-color: rgb(234, 236, 217);
 }
 
 .sticky-container {
@@ -107,6 +112,8 @@ th > .resizeTrigger {
     height: 100%;
     background: inherit;
     cursor: ew-resize;
+    z-index: 20;
+    opacity: 0.1;
   }
 
   th > .resizeTrigger:hover{
