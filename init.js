@@ -15,7 +15,7 @@ function CreateTrThElement(name, value, shortvalue, colSpan, rowspan, type) {
     th.setAttribute('colspan', colSpan);
     th.setAttribute('rowspan', rowspan);
     th.setAttribute('name', name);
-    th.setAttribute('value', shortvalue);
+    th.setAttribute('othername', shortvalue);
 	let button = document.createElement("button");
     button.className = 'toggleColButton';
     button.innerHTML = "-";
@@ -56,9 +56,8 @@ function GenerateTable() {
         }
     }
 
-    table = document.getElementById("table");
+    table = document.getElementById("accounting-table");
     thead = document.createElement("thead");
-    thead.classList.add("thead-dark");  
     let tr1 = document.createElement('tr');
 
         for (let i=0; i<names1.length; i++) {

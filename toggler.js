@@ -52,8 +52,8 @@ function ToggleHeader(element, isClosed) {
         //child.style.display = isClosed == true ? "" : "none";
         if(child.tagName == "LABEL"){
             let tmp = child.innerHTML;
-            child.innerHTML = child.parentElement.getAttribute("value");
-            child.parentElement.setAttribute("value", tmp);
+            child.innerHTML = child.parentElement.getAttribute("othername");
+            child.parentElement.setAttribute("othername", tmp);
         }
       }else{
         if(child.classList.contains("checked")){

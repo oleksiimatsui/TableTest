@@ -1,7 +1,10 @@
-body > .container {
-    max-width: none;
-}
 
+.hiddenCell{
+    display: none !important;
+}
+.hiddenCell1{
+    display: none !important;
+}
 
 .toggleColButton{
     background: none;
@@ -19,87 +22,92 @@ body > .container {
     display: inline-block;
 }
 .toggleColButton.checked{
-    background-color: rgb(234, 236, 217);
+   
 }
 
 .sticky-container {
     width: 100%;
-    max-height: calc(100vh - 4rem);
+    max-height: calc(100vh - 6rem);
     overflow-y: auto;
     overflow-x: auto;
     margin-top: 15px;
-    
 }
-.sticky-table{
+.accounting-table{
     font-size: small;
 }
 
-
-.sticky-table tr{
+.accounting-table tr{
     height: 14px;
     white-space: nowrap;
 }
 
+thead{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 
-.sticky-table,
-.sticky-table th{
+table { 
+    border-collapse: separate !important;
+    border-spacing: 0px !important;
+}
 
-    justify-content: center;
-    border-collapse:separate;
-    border-spacing: 0;
+th{
+    position: relative;
+}
+
+thead, thead tr, thead th{
     border: 0.1px solid rgb(179, 183, 150);
 }
-.sticky-table td{
-    border-collapse:collapse;
+.accounting-table td{
     border: 0.1px solid rgb(207, 207, 207);
 }
 
-.sticky-table th,
-.sticky-table td :not(.editable){
+.accounting-table th{
     padding: 8px;
 }
 
-.editable{
-    padding: 0;
-    background-color: aquamarine;
-}
-.cellText{
+td>*{
     overflow-x: hidden;
     min-width: 100%;
+    padding: 4px;
+    min-height: 100% !important;
+}
+td * * {
+    display: none
 }
 
-    .sticky-table tr:nth-child(even) td {
-        background: #fafafa;
-    }
+.accounting-table tr:nth-child(even) td {
+    background: #fafafa;
+}
+.accounting-table tr:nth-child(odd) td {
+    background: #fff;
+}
 
-    .sticky-table tr:nth-child(odd) td {
-        background: #fff;
-    }
 
-    .sticky-table thead,.sticky-table thead tr:nth-child(1){
-        position: sticky;
-        top: 0px;
-        background: #dfedc6;
-        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-    }
-    .sticky-table thead tr:nth-child(2){
-        position: sticky;
-        top: 0px;
-        background: rgb(219, 223, 185);
-        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-    }
+.accounting-table thead tr:nth-child(1) th{
+    background: #dfedc6;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
+}
+.accounting-table thead tr:nth-child(2) th{
+    background: rgb(219, 223, 185);
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15);
+}
 
 tr td:first-child {
     box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.15);
     position: sticky;
     left: 0px;
-    z-index: 9;
+    z-index: 1;
 }
 
-th{
-    position: relative;
+tr:first-child>th:first-child {
+    box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    background-color: #dfedc6;
+    left: 0px;
+    z-index: 2;
 }
 
 th > .resizeTrigger {
@@ -112,10 +120,11 @@ th > .resizeTrigger {
     height: 100%;
     background: inherit;
     cursor: ew-resize;
-    z-index: 20;
-    opacity: 0.1;
+    z-index: 1 !important;
+    background-color: aquamarine;
+    opacity: 0;
   }
 
   th > .resizeTrigger:hover{
-    background-color: aquamarine;
+    opacity: 0.5;
   }

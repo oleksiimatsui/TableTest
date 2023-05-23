@@ -16,23 +16,21 @@
     </head>
     <style>
         
-        .hiddenCell{
-            display: none !important;
-        }
-        .hiddenCell1{
-            display: none !important;
-        }
+
        
     </style>
-<body>
-    <div class="container px-2" style="max-width: none;">
-		<p>Accounting</p>
+<body class="overflow-hidden">
+    <div class="container-fluid px-2">
+        <div class="m-3" style="display: flex; flex-direction: row; gap:10px; align-items: center ">
+            <h5 class="">Accounting</h5>
+            <div class="form-group">
+                <button type="button" id="SaveBtn" class=" btn btn-outline-primary">Save</button>
+            </div>
+        </div>
+		
 		<div class="sticky-container">
-			<table class="sticky-table" id="table">
+			<table class="accounting-table" id="accounting-table">
 			</table>
-		</div>
-		<div class="form-group mt-3">
-			<button type="button" id="SaveBtn" class=" btn btn-outline-primary">Save</button>
 		</div>
 	</div>
 </table>
