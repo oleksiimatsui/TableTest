@@ -51,17 +51,29 @@ var widths = [];
 function setWidths(){
     let ths = document.querySelectorAll(".accounting-table th");
     widths = JSON.parse(localStorage.getItem('widths'));
-    for(let i=0; i<ths.length; i++){
-        if(ths[i].getAttribute("colspan") == 1){
-            let w = widths.find(x => x.key == ths[i].getAttribute("name"));
-
-            if(w != null){
-                console.log(w.width);
-                setWidth(ths[i].getAttribute("name"), w.width);
+    if(widths == null){
+        widths = [];
+        for(let i=0; i<ths.length; i++){
+            if(ths[i].getAttribute("colspan") == 1){
+                let computed = ths[i].getBoundingClientRect().width;
+                setWidth(ths[i].getAttribute("name"), computed);
             }
         }
-        
+    }else{
+        for(let i=0; i<ths.length; i++){
+            if(ths[i].getAttribute("colspan") == 1){
+                let w = widths.find(x => x.key == ths[i].getAttribute("name"));
+                if(w != null){
+                    setWidth(ths[i].getAttribute("name"), w.width);
+                }else{
+                    let computed = ths[i].element.getBoundingClientRect().width;
+                    setWidth(ths[i].getAttribute("name"), computed);
+                }
+            }
+            
+        }
     }
+    
 };
 
 
