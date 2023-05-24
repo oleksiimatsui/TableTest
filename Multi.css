@@ -62,6 +62,7 @@ thead, thead tr, thead th{
 }
 .accounting-table td{
     border: 0.1px solid rgb(207, 207, 207);
+    padding:0;
 }
 
 .accounting-table th{
@@ -72,9 +73,9 @@ td>*{
     overflow-x: hidden;
     min-width: 100%;
     padding: 4px;
-    min-height: 100% !important;
+    min-height: 100%;
 }
-td * * {
+td div * {
     display: none
 }
 
@@ -84,7 +85,6 @@ td * * {
 .accounting-table tr:nth-child(odd) td {
     background: #fff;
 }
-
 
 .accounting-table thead tr:nth-child(1) th{
     background: #dfedc6;
