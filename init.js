@@ -1,3 +1,4 @@
+const table = document.querySelector("#accounting-table");
 
 function CreateLabel(name, innerHtml) {
 	let label = document.createElement('label');
@@ -139,4 +140,5 @@ function GenerateTable() {
 
 window.onload = (event) => {
     GenerateTable();
+    setWidths();
 };
