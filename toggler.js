@@ -30,6 +30,7 @@ function ToggleCell(element, isClosed) {
 }
 
 function ToggleFirstCell(element, isClosed) {
+    element.style.width = "10px";
     var childs = element.children;
     if (childs == null) return;
     for (var i = 0; i < childs.length; i++) {
