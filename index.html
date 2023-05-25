@@ -48,6 +48,7 @@
 <script src="./init.js"></script>
 <script src="./toggler.js"></script>
 <script src="./resize.js"></script>
+<script src="./sorting.js"></script>
 <script>
     document.getElementById("cells-display").addEventListener("change", (event) => {
         let value = event.target.value;
@@ -65,10 +66,6 @@
             element.className = "scroll";
         });
     }
-
-$("th").click(function(){
-  $(this).hide();
-});
     
 
 window.onload = (event) => {
