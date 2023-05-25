@@ -1,7 +1,14 @@
 //sorting
-$( "thead" ).on( "click", "th[colspan='1']", function(){
+function resort(e){
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    let name = this.getAttribute("name");
+    let name = e.target.parentElement.getAttribute("name");
+    if(e.target.value == "up"){
+      e.target.innerHTML = "&darr;";
+      e.target.value = "down";
+    }else{
+      e.target.innerHTML = "&uarr;";
+      e.target.value = "up";
+    }
     table = document.getElementById("accounting-table");
     switching = true;
     dir = "asc"; 
@@ -35,4 +42,19 @@ $( "thead" ).on( "click", "th[colspan='1']", function(){
        }
      }
    }
- });
+ };
+
+
+
+function setSortingArrows(){
+  let el = $( "th[colspan='1']" );
+  for(let i=0; i<el.length; i++){
+    let btn = document.createElement("label");
+    btn.setAttribute("name", "btn-sort")
+    btn.style.padding = "4px";
+    btn.style.userSelect = "none";
+    btn.innerHTML = "&darr;";
+    btn.setAttribute("onclick","resort(event)");
+    el[i].appendChild(btn);
+  }
+}

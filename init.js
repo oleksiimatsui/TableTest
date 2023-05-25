@@ -1,9 +1,8 @@
 const table = document.querySelector("#accounting-table");
 
-function CreateLabel(name, innerHtml) {
-	let label = document.createElement('label');
-	label.setAttribute('name', name);
-	label.setAttribute('id', name);
+function CreateLabel(innerHtml) {
+	let label = document.createElement('h7');
+    label.setAttribute("name", "header-text");
 	label.innerHTML = innerHtml;
 	return label;
 }
@@ -20,7 +19,7 @@ function CreateThElement(name, value, parent, shortvalue, colSpan, rowspan, type
     button.innerHTML = "-";
     button.setAttribute('onclick', 'toggle(event)');
     th.appendChild(button);
-    let label = CreateLabel(value, value);
+    let label = CreateLabel(value);
     th.appendChild(label);
     if(colSpan == 1){
         let trigger = document.createElement('span');
@@ -42,7 +41,7 @@ function checkSelect (event) {
     }
 }
 
-function CreateTd(key,value,type,options) {
+function CreateTd(key,value,type,options,editable) {
     let td = document.createElement('td');
     td.setAttribute("name", key + "_");
     let entity = "";
@@ -60,13 +59,12 @@ function CreateTd(key,value,type,options) {
         let btn = document.createElement("option");
         btn.innerHTML = "edit...";
         btn.className = "btn-edit-options";
-      //  btn.setAttribute("disabled", true);
         entity.setAttribute('lastvalue', value);
         entity.setAttribute('oninput', 'checkSelect(event)');
         entity.appendChild(btn);
     }else{
         entity = document.createElement('div');
-        entity.setAttribute("contenteditable", "true");
+        if(editable) entity.setAttribute("contenteditable", "true");
         entity.innerHTML = value;
     }
     
@@ -98,10 +96,12 @@ function GenerateTable() {
                     top.push({ Name: h.Group, Colspan: 1, Rowspan: 1, Dropdown:false });
                 }
                 console.log("adding column " + h.Name + " with dropdown " +  h.Dropdown);
-                let a = bot.push(h);
+                bot.push(h);
             } else {
                 console.log("adding column " + h.Name + "with colspan 1 and rowspan 2");
-                top.push({ Name: h.Name, Colspan: 1, Rowspan: 2 });
+                h.Colspan = 1;
+                h.Rowspan = 2;
+                top.push(h);
             }
         }
 
@@ -123,12 +123,21 @@ function GenerateTable() {
             let tr = document.createElement("tr");
             for (const key in fop) {
                 let dropdown = null;
+                let editable = false;
+                for(let k=0; k<top.length; k++){
+                    if(key == top[k].Name){
+                        dropdown = top[k].Dropdown;
+                        editable = top[k].Editable;
+                        console.log(editable);
+                    }
+                }
                 for(let k=0; k<bot.length; k++){
                     if(key == bot[k].Name){
                         dropdown = bot[k].Dropdown;
+                        editable = bot[k].Editable;
                     }
                 }
-                let td = CreateTd(key, fop[key], "text", dropdown);
+                let td = CreateTd(key, fop[key], "text", dropdown, editable);
                 tr.appendChild(td);
             }
             tbody.appendChild(tr);

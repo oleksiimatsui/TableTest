@@ -51,10 +51,16 @@ function ToggleHeader(element, isClosed) {
         var child = childs[i];
         if (child.tagName != "BUTTON") {
             //child.style.display = isClosed == true ? "" : "none";
-            if (child.tagName == "LABEL") {
+            if (child.getAttribute("name") == "header-text") {
                 let tmp = child.innerHTML;
                 child.innerHTML = child.parentElement.getAttribute("othername");
                 child.parentElement.setAttribute("othername", tmp);
+            }else{
+                if (child.style.display == "none") {
+                    child.style.display = "";
+                } else {
+                    child.style.display = "none";
+                }
             }
         } else {
             if (child.classList.contains("checked")) {
