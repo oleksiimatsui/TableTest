@@ -48,24 +48,11 @@
 <script src="./init.js"></script>
 <script src="./toggler.js"></script>
 <script src="./resize.js"></script>
+<script src="./cells-display.js"></script>
 <script src="./sorting.js"></script>
+<script src="./onchange.js"></script>
 <script>
-    document.getElementById("cells-display").addEventListener("change", (event) => {
-        let value = event.target.value;
-        let r = document.querySelector(':root');    
-        let array = document.querySelectorAll('td>[contenteditable]');
-        console.log(value);
-        array.forEach(element => {
-            element.className = value;
-        });
-    });
     
-    function setClasses(){
-        let array = document.querySelectorAll('td>[contenteditable]');
-        array.forEach(element => {
-            element.className = "scroll";
-        });
-    }
     
 
 window.onload = (event) => {

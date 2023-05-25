@@ -31,8 +31,6 @@ function CreateThElement(name, value, parent, shortvalue, colSpan, rowspan, type
     return th;
 }
 
-
-
 function checkSelect (event) {
     let previous_value = event.target.getAttribute("lastvalue");
     let value = event.target.value;
@@ -54,7 +52,6 @@ function CreateTd(key,value,type,options) {
             let option = document.createElement("option");
             option.value = options[i];
             option.text = options[i];
-            option.setAttribute("contenteditable", "true");
             if(options[i] == value){
                 option.setAttribute("selected", true);
             }

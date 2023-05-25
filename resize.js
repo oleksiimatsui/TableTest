@@ -66,7 +66,7 @@ function setWidths(){
                 if(w != null){
                     setWidth(ths[i].getAttribute("name"), w.width);
                 }else{
-                    let computed = ths[i].element.getBoundingClientRect().width;
+                    let computed = ths[i].getBoundingClientRect().width;
                     setWidth(ths[i].getAttribute("name"), computed);
                 }
             }
