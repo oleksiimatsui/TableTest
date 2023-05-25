@@ -24,6 +24,11 @@
             <div class="form-group">
                 <button type="button" id="SaveBtn" class=" btn btn-outline-primary">Save</button>
             </div>
+            <select id="cells-display">
+                <option value="scroll">scroll</option>
+                <option value="focus-visible">visible when selected</option>
+                <option value="many-rows">many rows</option>
+            </select>
         </div>
 		
 		<div class="sticky-container">
@@ -41,7 +46,31 @@
 </body>
 <script src="./data.js"></script>
 <script src="./init.js"></script>
-
 <script src="./toggler.js"></script>
 <script src="./resize.js"></script>
+<script>
+    document.getElementById("cells-display").addEventListener("change", (event) => {
+        let value = event.target.value;
+        let r = document.querySelector(':root');    
+        let array = document.querySelectorAll('td>[contenteditable]');
+        console.log(value);
+        array.forEach(element => {
+            element.className = value;
+        });
+    });
+    
+    function setClasses(){
+        let array = document.querySelectorAll('td>[contenteditable]');
+        array.forEach(element => {
+            element.className = "scroll";
+        });
+    }
+    
+
+window.onload = (event) => {
+    GenerateTable();
+    setWidths();
+    setClasses();
+};
+</script>
 </html>

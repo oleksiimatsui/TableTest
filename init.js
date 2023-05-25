@@ -138,7 +138,4 @@ function GenerateTable() {
         }
 }
 
-window.onload = (event) => {
-    GenerateTable();
-    setWidths();
-};
+
